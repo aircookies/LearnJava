@@ -1260,3 +1260,341 @@ LinkedHashSet的底层原理
 3. Lambda表达式
 
 ![alt text](./images/image44.png)
+
+### Map集合的实现类
+
+![alt text](./images/image45.png)
+
+#### HashMap集合的底层原理:
+
+![alt text](./images/image46.png)
+
+#### TreeMap的使用
+
+![alt text](./images/image47.png)
+
+# Stream流
+
+- 是Jdk8开始新增的一套API(java.util.stream.*), 可以用于操作集合或者数组的数据
+- 优势: Stream流大量结合了Lambda的语法风格来变成, 功能强大, 性能高效, 代码简洁, 可读性好
+
+## Stream流的使用步骤
+
+![alt text](./images/image48.png)
+
+## 获取Stream流
+
+![alt text](./images/image49.png)
+
+## Stream流常用中间方法
+
+![alt text](./images/image50.png)
+
+## Stream流常用终结方法
+
+![alt text](./images/image51.png)
+
+### 收集Stream流
+
+![alt text](./images/image52.png)
+
+# 方法中的可变参数
+
+- 可变参数是一种特殊形参, 定义在方法, 构造器的形参列表里, 格式是: `数据类型...参数名称;`
+
+## 可变参数的特点和好处
+
+- 特点: 可以不传数据给它; 可以串一个或者同时传多个数据给它; 也可以传一个数组给它
+- 好处: 常常用来灵活地接受数据
+
+## 可变参数的注意事项
+
+- 可变参数在方法内部就是一个数组
+- 一个形参列表中可变参数只能有一个
+- 可变参数必须放在形参列表的最后面
+
+# Collections工具类
+
+Collections是一个用来操作集合的工具类
+
+## Collections提供的常用静态方法
+
+![alt text](./images/image53.png)
+
+# File-IO流
+
+## File
+
+- File是java.io.包下的类, File类的对象, 用于代表当前操作系统的文件(可以是文件或文件夹)
+- File类的对象可以代表文件/文件夹, 并可以调用其提供的方法对象文件进行操作
+
+### 创建File类的对象
+
+| 构造器                                     | 说明                                           |
+| ------------------------------------------ | ---------------------------------------------- |
+| `public File(String pathname)`             | 根据文件路径创建文件对象                       |
+| `public File(String parent, String child)` | 根据父路径和子路径名字创建文件对象             |
+| `public File(File parent, String child)`   | 根据父路径对应文件对象和子路径名字创建文件对象 |
+
+注意: 
+
+- File类只能对文件本身进行操作, 不能读写文件里面存储的数据
+- File对象既可以代表文件, 也可以代表文件夹
+- File封装的对象仅仅是一个路径名, 这个路径可以是存在的, 也可以是不存在的
+
+### File提供的判断文件类型, 获取文件信息功能
+
+![alt text](./images/image54.png)
+
+### File提供的创建和删除文件的方法
+
+![alt text](./images/image55.png)
+
+注意: delete方法默认只能删除文件和文件夹, 删除后的文件不会进入回收站
+
+### File提供的遍历文件夹的方法
+
+![alt text](./images/image56.png)
+
+使用listFile方法时的注意事项:
+
+- 当主调是文件, 或者路径不存在时, 返回null
+- 当主调是空文件夹时, 返回一个长度为0的数组
+- 当主调是一个有内容的文件夹时, 将里面所有一级文件和文件夹的路径放在File数组中返回
+- 当主调是一个文件夹, 且里面有隐藏文件时, 将里面所有文件和文件夹的路径放在File数组中返回, 包含隐藏文件
+- 当主调是一个文件夹, 但是没有权限访问该文件夹时, 返回null
+
+## 常见字符集
+
+### 标准ASCII字符集
+
+- ASCII(American Standard Code for Information Interchange): 美国信息交换标准代码, 包括了英文, 符号等
+- 标准ASCII使用1个字节存储一个字符, 首位是0, 因此总共可以表示128个字符
+
+### GBK(汉字内码扩展规范, 国标)
+
+- 汉字编码字符集, 包含了2万多个汉字等字符, GBK中一个中文字符编码成两个字节的形式存储
+
+注意: 
+
+- GBK兼容了ASCII字符集
+- GBK规定汉字的第一个字节的第一位必须是1
+
+### Unicode字符集(统一码, 也叫万国码)
+
+- Unicode是国际组织制定的, 可以容纳世界上所有文字, 符号的字符集
+
+### UTF-8字符集
+
+- 是Unicode字符集的一种编码方案, 采取可变长度编码方案, 共分四个长度区:1个字节, 2个字节, 3个字节, 4个字节
+- 英文字符, 数字等只占1个字节(兼容标准ASCII编码), 汉字字符占用3个字节
+
+![alt text](./images/image57.png)
+
+注意: 技术人员在开发时都应该使用UTF-8编码
+
+### 总结
+
+- ASCII字符集: 只有英文, 数字, 符号等, 占1个字节
+- GBK字符集: 汉字占2个字节, 英文, 数字占1个字节
+- UTF-8字符集: 汉字占3个字节, 英文, 数字占1个字节
+
+注意:
+
+- 字符编码时使用的字符集, 和解码时使用的字符集必须一致, 否则会出现乱码
+- 英文, 数字一般不会乱码, 因为很多字符集都兼容了ASCII编码
+
+## 使用程序对字符进行编码和解码的操作
+
+![alt text](./images/image58.png)
+
+## IO流
+
+### IO流的分类
+
+![alt text](./images/image59.png)
+
+### IO流的体系
+
+1. 字节输入流 `InputStream` (读字节数据)
+2. 字节输出流 `OutputStream` (写字节数据)
+3. 字符输入流 `Reader` (读字符数据)
+4. 字符输出流 `Writer` (写字符数据)
+
+![alt text](./images/image60.png)
+
+### FileInputStream(文件字节输入流)
+
+- 作用: 以内存为基准, 可以把磁盘文件中的数据以字节的形式读入到内存中去
+
+![alt text](./images/image61.png)
+
+注意:
+
+- 使用FileInputStream每次读取一个字节, 读取性能较差, 并且读取汉字输出会乱码
+- 使用FileInputStream每次读取多少个字节, 读取性能得到了提升, 但读取汉字输出还是会乱码
+
+使用字节流读取中文如何保证输出不乱码?
+- 定义一个与文件一样大的字节数组, 一次性读取完文件的全部字节
+
+#### 一次读取完全部字节
+
+- Java官方为InputStream提供了如下方法, 可以直接把文件的全部字节读取到一个字节数组中返回
+
+| 方法名称                                          | 说明                                                             |
+| ------------------------------------------------- | ---------------------------------------------------------------- |
+| `public byte[] readAllBytes() throws IOException` | 直接将当前字节输入流对应的文件对象的字节数据装到一个字节数组返回 |
+
+注意: 
+
+- 如果文件过大, 创建的字节数组也会过大, 可能引起内存溢出
+- 读取文本适合用字符流; 字节流适合做数据的转移, 比如文件复制
+
+### FileOutputStream文件字节输出流
+
+作用: 以内存为基准, 把内存中的数据以字节的形式写出到文件中去
+
+![alt text](./images/image62.png)
+
+### 资源释放
+
+资源释放方案:
+
+#### try-catch-finally
+
+``` java
+try {
+    ...
+    ...
+} catch (IOException e) {
+    e.printStackTrace();
+} finally {
+    ...
+}
+```
+
+- finally代码区的特点: 无论try中的程序是正常执行了还是出现了异常, 最后都一定会执行finally区, 除非JVM终止
+- 作用: 一般用于在程序执行完成后进行资源的释放操作
+
+#### try-with-resource
+
+JDK7开始提供了更简单的资源释放方案: try-with-resource
+
+``` java
+try (定义资源1; 定义资源2; ...) {
+    可能出现异常的代码;
+} catch (异常类名 变量名) {
+    异常处理代码;
+}
+```
+
+该资源使用完毕后, 会自动调用其close()方法, 完成对资源的释放
+
+- ()中只能放资源, 否则报错
+- 资源一般指的是实现了AutoCloseable接口
+
+``` java
+public abstract class InputStream implements Closeable {}
+public abstract class OutputStream implements Closeable, Flushable {}
+public interface Closeable extends AutoCloseable {}
+```
+
+### FileReader文件字符输入流
+
+作用: 以内存为基准, 可以把文件中的数据以字符的形式读入到内存中去
+
+![alt text](./images/image63.png)
+
+### FileWriter文件字符输出流
+
+作用: 以内存为基准, 把内存中的数据以字符的形式写出到文件中去
+
+![alt text](./images/image64.png)
+
+注意: 字符输出流写出数据后, 必须刷新流, 或者关闭流, 写出去的数据才能生效
+
+| 方法名称                                 | 说明                                           |
+| ---------------------------------------- | ---------------------------------------------- |
+| `public void flush() throws IOException` | 刷新流, 就是将内存中缓存的数据立即写到文件中去 |
+| `public void close() throws IOException` | 关闭流的操作, 包含了刷新                       |
+
+### 缓冲流
+
+![alt text](./images/image65.png)
+
+#### BufferedInputStream缓冲字节输入流
+
+作用: 可以提高字节输入流读取数据的性能
+原理: 缓冲字节输入流自带了8KB缓冲池; 缓冲字节输出流也自带了8KB缓冲池
+
+![alt text](./images/image66.png)
+
+| 构造器                                         | 说明                                                                   |
+| ---------------------------------------------- | ---------------------------------------------------------------------- |
+| `public BufferedInputStream(InputStream is)`   | 把低级的字节输入流包装成一个高级的缓冲字节输入流, 从而提高读数据的性能 |
+| `public BufferedOutputStream(OutputStream os)` | 把低级的字节输出流包装成一个高级的缓冲字节输出流, 从而提高写数据的性能 |
+
+#### BufferedReader缓冲字符输入流
+
+作用: 自带8K(8192)的字符缓冲池, 可以提高字符输入流读取字符数据的性能
+
+| 构造器                            | 说明                                                                           |
+| --------------------------------- | ------------------------------------------------------------------------------ |
+| `public BufferedReader(Reader r)` | 把低级的字符输入流包装成字符缓冲输入流管道, 从而提高字符输入流读字符数据的性能 |
+
+字符缓冲输入流新增功能: 按行读取字符
+
+| 方法                       | 说明                                             |
+| -------------------------- | ------------------------------------------------ |
+| `public String readLine()` | 读取一行数据返回, 如果没有数据可读了, 会返回null |
+
+#### BufferedWriter缓冲字符输出流
+
+作用: 自带8K的字符缓冲池, 可以提高字符输出流写字符数据的性能
+
+| 构造器 | 说明 |
+| `public BufferedWriter(Writer r)` | 把低级的字符输出流包装成一个高级的缓冲字符输出流管道, 从而提高字符输出流写数据的性能 |
+
+字符缓冲输出流新增的功能: 换行
+
+| 方法                    | 说明 |
+| ----------------------- | ---- |
+| `public void newLine()` | 换行 |
+
+### InputStreamReader(字符输入转换流)
+
+- 解决不同编码时, 字符流读取文本内容乱码问题
+- 解决思路: 先获取文件的原始字节流, 再将其按真实的字符集编码转成字符输入流, 这样字符输入流中的字符就不乱码了
+
+![alt text](./images/image67.png)
+
+### 打印流
+
+#### PrintStream/PrintWriter
+
+- 作用: 打印流可以实现更方便, 更高效的打印数据出去, 能实现打印啥出去就是啥出去
+
+![alt text](./images/image68.png)
+
+### 特殊数据流
+
+#### DataOutputStream(数据输出流)
+
+- 允许把数据和其类型一并写出去
+
+![alt text](./images/image69.png)
+
+#### DataInputStream(数据输入流)
+
+- 用于读取数据输出流写出去的数据
+
+![alt text](./images/image70.png)
+
+## Commons-io框架
+
+- 框架(Framework)是一个预先写好的代码库或一组工具, 皆在简化和加速开发过程
+- 框架的形式: 一半是把类, 接口等编译成class形式, 再压缩成一个.jar结尾的文件发行出去
+- IO框架封装了Java提供的对文件,数据进行操作的代码, 对外提供了更简单的方式来对文件进行操作, 对数据进行读写等
+- Commons-io是apache开源基金组织提供的一组有关IO操作的小框架, 目的是提高IO流的开发效率
+
+![alt text](./images/image71.png)
